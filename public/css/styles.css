@@ -1,0 +1,37 @@
+/* body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+.navbar {
+    background-color: #000080;
+}
+
+.navbar-brand, .nav-link {
+    color: white 
+}
+h1, h2 {
+    color: #000080;
+}
+.fbi-logo {
+    max-width: 100px;
+    margin-right: 10px;
+} 
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+ #formLogin .card-title{
+    color: white;
+  }

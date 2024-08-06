@@ -1,0 +1,52 @@
+<h1 class="text-center">&#128374; FBI System &#128374;</h1>
+<div class="card bg-dark text-center">
+  <div class="card-body">
+    <form id="formLogin">
+      <h1>&#128372;&#128372;&#128372;</h1>
+      <h5 class="card-title text-center text-white">Ingrese sus credenciales</h5>
+      <div class="row d-flex align-items-center mb-1">
+        <div class="col-12 text-white">Email:</div>
+        <div class="col-7 m-auto"><input type="email" name="email" class="form-control" required></div>
+      </div>
+      <div class="row d-flex align-items-center">
+        <div class="col-12 text-white">Contraseña:</div>
+        <div class="col-7 m-auto"><input type="password" name="password" class="form-control" required></div>
+      </div>
+      <button type="submit" class="btn bg-light my-3">Ingresar &#128373;</button>
+    </form>
+  </div>
+</div>
+
+<script>
+    const formLogin = document.getElementById("formLogin");
+
+    formLogin.addEventListener("submit", async (event) => {
+        try {
+            event.preventDefault();
+
+            let formData = new FormData(formLogin);
+
+            let response = await fetch("/api/v1/login", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formData)
+            });
+
+            if(response.status == 200) {
+                const htmlContent = await response.text();
+                document.body.innerHTML = htmlContent;
+            } else {
+                let data = await response.json();
+                alert(data.message);
+                sessionStorage.removeItem("token");
+            }
+
+        } catch(error) {
+            console.error("Error en proceso de login:", error);
+            alert("Error en proceso de login.");
+            sessionStorage.removeItem("token");
+        }
+    })
+</script>
